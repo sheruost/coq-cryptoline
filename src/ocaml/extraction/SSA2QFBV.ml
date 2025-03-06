@@ -89,7 +89,7 @@ let bexp_instr e = function
 | SSALite.SSALite.Icmov (v, c, a1, a2) ->
   QFBV.QFBV.qfbv_eq (QFBV.QFBV.qfbv_var v) (QFBV.QFBV.Eite
     ((QFBV.QFBV.qfbv_eq
-       (QFBV.QFBV.qfbv_const (Pervasives.succ 0) (Pervasives.succ 0))
+       (QFBV.QFBV.qfbv_const (Stdlib.succ 0) (Stdlib.succ 0))
        (qfbv_atom c)), (qfbv_atom a1), (qfbv_atom a2)))
 | SSALite.SSALite.Inot (v, _, a) ->
   QFBV.QFBV.qfbv_eq (QFBV.QFBV.qfbv_var v) (QFBV.QFBV.qfbv_not (qfbv_atom a))
@@ -99,38 +99,38 @@ let bexp_instr e = function
 | SSALite.SSALite.Iadds (c, v, a1, a2) ->
   QFBV.QFBV.qfbv_conj
     (QFBV.QFBV.qfbv_eq (QFBV.QFBV.qfbv_var c)
-      (QFBV.QFBV.qfbv_high (Pervasives.succ 0)
+      (QFBV.QFBV.qfbv_high (Stdlib.succ 0)
         (QFBV.QFBV.qfbv_add
-          (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a1))
-          (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a2)))))
+          (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a1))
+          (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a2)))))
     (QFBV.QFBV.qfbv_eq (QFBV.QFBV.qfbv_var v)
       (QFBV.QFBV.qfbv_low (SSALite.SSALite.asize a1 e)
         (QFBV.QFBV.qfbv_add
-          (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a1))
-          (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a2)))))
+          (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a1))
+          (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a2)))))
 | SSALite.SSALite.Iadc (v, a1, a2, y) ->
   QFBV.QFBV.qfbv_eq (QFBV.QFBV.qfbv_var v)
     (QFBV.QFBV.qfbv_low (SSALite.SSALite.asize a1 e)
       (QFBV.QFBV.qfbv_add
         (QFBV.QFBV.qfbv_add
-          (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a1))
-          (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a2)))
+          (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a1))
+          (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a2)))
         (QFBV.QFBV.qfbv_zext (SSALite.SSALite.asize a1 e) (qfbv_atom y))))
 | SSALite.SSALite.Iadcs (c, v, a1, a2, y) ->
   QFBV.QFBV.qfbv_conj
     (QFBV.QFBV.qfbv_eq (QFBV.QFBV.qfbv_var c)
-      (QFBV.QFBV.qfbv_high (Pervasives.succ 0)
+      (QFBV.QFBV.qfbv_high (Stdlib.succ 0)
         (QFBV.QFBV.qfbv_add
           (QFBV.QFBV.qfbv_add
-            (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a1))
-            (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a2)))
+            (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a1))
+            (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a2)))
           (QFBV.QFBV.qfbv_zext (SSALite.SSALite.asize a1 e) (qfbv_atom y)))))
     (QFBV.QFBV.qfbv_eq (QFBV.QFBV.qfbv_var v)
       (QFBV.QFBV.qfbv_low (SSALite.SSALite.asize a1 e)
         (QFBV.QFBV.qfbv_add
           (QFBV.QFBV.qfbv_add
-            (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a1))
-            (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a2)))
+            (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a1))
+            (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a2)))
           (QFBV.QFBV.qfbv_zext (SSALite.SSALite.asize a1 e) (qfbv_atom y)))))
 | SSALite.SSALite.Isub (v, a1, a2) ->
   QFBV.QFBV.qfbv_eq (QFBV.QFBV.qfbv_var v)
@@ -138,60 +138,60 @@ let bexp_instr e = function
 | SSALite.SSALite.Isubc (c, v, a1, a2) ->
   QFBV.QFBV.qfbv_conj
     (QFBV.QFBV.qfbv_eq (QFBV.QFBV.qfbv_var c)
-      (QFBV.QFBV.qfbv_high (Pervasives.succ 0)
+      (QFBV.QFBV.qfbv_high (Stdlib.succ 0)
         (QFBV.QFBV.qfbv_add
           (QFBV.QFBV.qfbv_add
-            (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a1))
-            (QFBV.QFBV.qfbv_zext (Pervasives.succ 0)
+            (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a1))
+            (QFBV.QFBV.qfbv_zext (Stdlib.succ 0)
               (QFBV.QFBV.qfbv_not (qfbv_atom a2))))
           (QFBV.QFBV.qfbv_zext (SSALite.SSALite.asize a1 e)
-            (QFBV.QFBV.qfbv_const (Pervasives.succ 0) (Pervasives.succ 0))))))
+            (QFBV.QFBV.qfbv_const (Stdlib.succ 0) (Stdlib.succ 0))))))
     (QFBV.QFBV.qfbv_eq (QFBV.QFBV.qfbv_var v)
       (QFBV.QFBV.qfbv_low (SSALite.SSALite.asize a1 e)
         (QFBV.QFBV.qfbv_add
           (QFBV.QFBV.qfbv_add
-            (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a1))
-            (QFBV.QFBV.qfbv_zext (Pervasives.succ 0)
+            (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a1))
+            (QFBV.QFBV.qfbv_zext (Stdlib.succ 0)
               (QFBV.QFBV.qfbv_not (qfbv_atom a2))))
           (QFBV.QFBV.qfbv_zext (SSALite.SSALite.asize a1 e)
-            (QFBV.QFBV.qfbv_const (Pervasives.succ 0) (Pervasives.succ 0))))))
+            (QFBV.QFBV.qfbv_const (Stdlib.succ 0) (Stdlib.succ 0))))))
 | SSALite.SSALite.Isubb (b, v, a1, a2) ->
   QFBV.QFBV.qfbv_conj
     (QFBV.QFBV.qfbv_eq (QFBV.QFBV.qfbv_var b)
-      (QFBV.QFBV.qfbv_high (Pervasives.succ 0)
+      (QFBV.QFBV.qfbv_high (Stdlib.succ 0)
         (QFBV.QFBV.qfbv_sub
-          (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a1))
-          (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a2)))))
+          (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a1))
+          (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a2)))))
     (QFBV.QFBV.qfbv_eq (QFBV.QFBV.qfbv_var v)
       (QFBV.QFBV.qfbv_low (SSALite.SSALite.asize a1 e)
         (QFBV.QFBV.qfbv_sub
-          (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a1))
-          (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a2)))))
+          (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a1))
+          (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a2)))))
 | SSALite.SSALite.Isbc (v, a1, a2, y) ->
   QFBV.QFBV.qfbv_eq (QFBV.QFBV.qfbv_var v)
     (QFBV.QFBV.qfbv_low (SSALite.SSALite.asize a1 e)
       (QFBV.QFBV.qfbv_add
         (QFBV.QFBV.qfbv_add
-          (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a1))
-          (QFBV.QFBV.qfbv_zext (Pervasives.succ 0)
+          (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a1))
+          (QFBV.QFBV.qfbv_zext (Stdlib.succ 0)
             (QFBV.QFBV.qfbv_not (qfbv_atom a2))))
         (QFBV.QFBV.qfbv_zext (SSALite.SSALite.asize a1 e) (qfbv_atom y))))
 | SSALite.SSALite.Isbcs (c, v, a1, a2, y) ->
   QFBV.QFBV.qfbv_conj
     (QFBV.QFBV.qfbv_eq (QFBV.QFBV.qfbv_var c)
-      (QFBV.QFBV.qfbv_high (Pervasives.succ 0)
+      (QFBV.QFBV.qfbv_high (Stdlib.succ 0)
         (QFBV.QFBV.qfbv_add
           (QFBV.QFBV.qfbv_add
-            (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a1))
-            (QFBV.QFBV.qfbv_zext (Pervasives.succ 0)
+            (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a1))
+            (QFBV.QFBV.qfbv_zext (Stdlib.succ 0)
               (QFBV.QFBV.qfbv_not (qfbv_atom a2))))
           (QFBV.QFBV.qfbv_zext (SSALite.SSALite.asize a1 e) (qfbv_atom y)))))
     (QFBV.QFBV.qfbv_eq (QFBV.QFBV.qfbv_var v)
       (QFBV.QFBV.qfbv_low (SSALite.SSALite.asize a1 e)
         (QFBV.QFBV.qfbv_add
           (QFBV.QFBV.qfbv_add
-            (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a1))
-            (QFBV.QFBV.qfbv_zext (Pervasives.succ 0)
+            (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a1))
+            (QFBV.QFBV.qfbv_zext (Stdlib.succ 0)
               (QFBV.QFBV.qfbv_not (qfbv_atom a2))))
           (QFBV.QFBV.qfbv_zext (SSALite.SSALite.asize a1 e) (qfbv_atom y)))))
 | SSALite.SSALite.Isbb (v, a1, a2, y) ->
@@ -199,24 +199,24 @@ let bexp_instr e = function
     (QFBV.QFBV.qfbv_low (SSALite.SSALite.asize a1 e)
       (QFBV.QFBV.qfbv_sub
         (QFBV.QFBV.qfbv_sub
-          (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a1))
-          (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a2)))
+          (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a1))
+          (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a2)))
         (QFBV.QFBV.qfbv_zext (SSALite.SSALite.asize a1 e) (qfbv_atom y))))
 | SSALite.SSALite.Isbbs (b, v, a1, a2, y) ->
   QFBV.QFBV.qfbv_conj
     (QFBV.QFBV.qfbv_eq (QFBV.QFBV.qfbv_var b)
-      (QFBV.QFBV.qfbv_high (Pervasives.succ 0)
+      (QFBV.QFBV.qfbv_high (Stdlib.succ 0)
         (QFBV.QFBV.qfbv_sub
           (QFBV.QFBV.qfbv_sub
-            (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a1))
-            (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a2)))
+            (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a1))
+            (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a2)))
           (QFBV.QFBV.qfbv_zext (SSALite.SSALite.asize a1 e) (qfbv_atom y)))))
     (QFBV.QFBV.qfbv_eq (QFBV.QFBV.qfbv_var v)
       (QFBV.QFBV.qfbv_low (SSALite.SSALite.asize a1 e)
         (QFBV.QFBV.qfbv_sub
           (QFBV.QFBV.qfbv_sub
-            (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a1))
-            (QFBV.QFBV.qfbv_zext (Pervasives.succ 0) (qfbv_atom a2)))
+            (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a1))
+            (QFBV.QFBV.qfbv_zext (Stdlib.succ 0) (qfbv_atom a2)))
           (QFBV.QFBV.qfbv_zext (SSALite.SSALite.asize a1 e) (qfbv_atom y)))))
 | SSALite.SSALite.Imul (v, a1, a2) ->
   QFBV.QFBV.qfbv_eq (QFBV.QFBV.qfbv_var v)
@@ -297,7 +297,7 @@ let bexp_instr e = function
      then if eq_op nat_eqType (Obj.magic sizeof_typ t)
                (Obj.magic sizeof_typ (SSALite.SSALite.atyp a e))
           then qfbv_atom a
-          else if leq (Pervasives.succ (sizeof_typ t))
+          else if leq (Stdlib.succ (sizeof_typ t))
                     (sizeof_typ (SSALite.SSALite.atyp a e))
                then QFBV.QFBV.qfbv_low (sizeof_typ t) (qfbv_atom a)
                else QFBV.QFBV.qfbv_zext
@@ -306,7 +306,7 @@ let bexp_instr e = function
      else if eq_op nat_eqType (Obj.magic sizeof_typ t)
                (Obj.magic sizeof_typ (SSALite.SSALite.atyp a e))
           then qfbv_atom a
-          else if leq (Pervasives.succ (sizeof_typ t))
+          else if leq (Stdlib.succ (sizeof_typ t))
                     (sizeof_typ (SSALite.SSALite.atyp a e))
                then QFBV.QFBV.qfbv_low (sizeof_typ t) (qfbv_atom a)
                else QFBV.QFBV.qfbv_sext
@@ -318,7 +318,7 @@ let bexp_instr e = function
      then if eq_op nat_eqType (Obj.magic sizeof_typ t)
                (Obj.magic sizeof_typ (SSALite.SSALite.atyp a e))
           then qfbv_atom a
-          else if leq (Pervasives.succ (sizeof_typ t))
+          else if leq (Stdlib.succ (sizeof_typ t))
                     (sizeof_typ (SSALite.SSALite.atyp a e))
                then QFBV.QFBV.qfbv_low (sizeof_typ t) (qfbv_atom a)
                else QFBV.QFBV.qfbv_zext
@@ -327,7 +327,7 @@ let bexp_instr e = function
      else if eq_op nat_eqType (Obj.magic sizeof_typ t)
                (Obj.magic sizeof_typ (SSALite.SSALite.atyp a e))
           then qfbv_atom a
-          else if leq (Pervasives.succ (sizeof_typ t))
+          else if leq (Stdlib.succ (sizeof_typ t))
                     (sizeof_typ (SSALite.SSALite.atyp a e))
                then QFBV.QFBV.qfbv_low (sizeof_typ t) (qfbv_atom a)
                else QFBV.QFBV.qfbv_sext
@@ -437,7 +437,7 @@ let bexp_atom_uadcB_algsnd a_size a1 a2 ac =
       (QFBV.QFBV.qfbv_lneg
         (QFBV.QFBV.qfbv_uaddo
           (QFBV.QFBV.qfbv_add (qfbv_atom a1) (qfbv_atom a2))
-          (QFBV.QFBV.qfbv_zext (subn a_size (Pervasives.succ 0))
+          (QFBV.QFBV.qfbv_zext (subn a_size (Stdlib.succ 0))
             (qfbv_atom ac))))
   | Aconst (_, bs1) ->
     (match a2 with
@@ -448,7 +448,7 @@ let bexp_atom_uadcB_algsnd a_size a1 a2 ac =
          (QFBV.QFBV.qfbv_lneg
            (QFBV.QFBV.qfbv_uaddo
              (QFBV.QFBV.qfbv_add (qfbv_atom a1) (qfbv_atom a2))
-             (QFBV.QFBV.qfbv_zext (subn a_size (Pervasives.succ 0))
+             (QFBV.QFBV.qfbv_zext (subn a_size (Stdlib.succ 0))
                (qfbv_atom ac))))
      | Aconst (_, bs2) ->
        (match ac with
@@ -456,16 +456,16 @@ let bexp_atom_uadcB_algsnd a_size a1 a2 ac =
           if coq_Uaddo bs1 bs2
           then QFBV.QFBV.qfbv_false
           else if coq_Uaddo (addB bs1 bs2)
-                    (zext (subn a_size (Pervasives.succ 0)) (b1 :: []))
+                    (zext (subn a_size (Stdlib.succ 0)) (b1 :: []))
                then QFBV.QFBV.qfbv_lneg
                       (QFBV.QFBV.qfbv_uaddo (QFBV.QFBV.Econst (addB bs1 bs2))
                         (QFBV.QFBV.qfbv_zext
-                          (subn a_size (Pervasives.succ 0)) (qfbv_atom ac)))
+                          (subn a_size (Stdlib.succ 0)) (qfbv_atom ac)))
                else QFBV.QFBV.qfbv_true
         | Aconst (_, c) ->
           if (||) (coq_Uaddo bs1 bs2)
                (coq_Uaddo (addB bs1 bs2)
-                 (zext (subn a_size (Pervasives.succ 0)) c))
+                 (zext (subn a_size (Stdlib.succ 0)) c))
           then QFBV.QFBV.qfbv_false
           else QFBV.QFBV.qfbv_true))
 
@@ -481,7 +481,7 @@ let bexp_atom_sadcB_algsnd a_size a1 a2 ac =
       (QFBV.QFBV.qfbv_lneg
         (QFBV.QFBV.qfbv_saddo
           (QFBV.QFBV.qfbv_add (qfbv_atom a1) (qfbv_atom a2))
-          (QFBV.QFBV.qfbv_zext (subn a_size (Pervasives.succ 0))
+          (QFBV.QFBV.qfbv_zext (subn a_size (Stdlib.succ 0))
             (qfbv_atom ac))))
   | Aconst (_, bs1) ->
     (match a2 with
@@ -492,7 +492,7 @@ let bexp_atom_sadcB_algsnd a_size a1 a2 ac =
          (QFBV.QFBV.qfbv_lneg
            (QFBV.QFBV.qfbv_saddo
              (QFBV.QFBV.qfbv_add (qfbv_atom a1) (qfbv_atom a2))
-             (QFBV.QFBV.qfbv_zext (subn a_size (Pervasives.succ 0))
+             (QFBV.QFBV.qfbv_zext (subn a_size (Stdlib.succ 0))
                (qfbv_atom ac))))
      | Aconst (_, bs2) ->
        (match ac with
@@ -500,16 +500,16 @@ let bexp_atom_sadcB_algsnd a_size a1 a2 ac =
           if coq_Saddo bs1 bs2
           then QFBV.QFBV.qfbv_false
           else if coq_Saddo (addB bs1 bs2)
-                    (zext (subn a_size (Pervasives.succ 0)) (b1 :: []))
+                    (zext (subn a_size (Stdlib.succ 0)) (b1 :: []))
                then QFBV.QFBV.qfbv_lneg
                       (QFBV.QFBV.qfbv_saddo (QFBV.QFBV.Econst (addB bs1 bs2))
                         (QFBV.QFBV.qfbv_zext
-                          (subn a_size (Pervasives.succ 0)) (qfbv_atom ac)))
+                          (subn a_size (Stdlib.succ 0)) (qfbv_atom ac)))
                else QFBV.QFBV.qfbv_true
         | Aconst (_, c) ->
           if (||) (coq_Saddo bs1 bs2)
                (coq_Saddo (addB bs1 bs2)
-                 (zext (subn a_size (Pervasives.succ 0)) c))
+                 (zext (subn a_size (Stdlib.succ 0)) c))
           then QFBV.QFBV.qfbv_false
           else QFBV.QFBV.qfbv_true))
 
@@ -596,7 +596,7 @@ let bexp_atom_usbbB_algsnd a_size a1 a2 ab =
     (QFBV.QFBV.qfbv_lneg
       (QFBV.QFBV.qfbv_usubo
         (QFBV.QFBV.qfbv_sub (qfbv_atom a1) (qfbv_atom a2))
-        (QFBV.QFBV.qfbv_zext (subn a_size (Pervasives.succ 0)) (qfbv_atom ab))))
+        (QFBV.QFBV.qfbv_zext (subn a_size (Stdlib.succ 0)) (qfbv_atom ab))))
 
 (** val bexp_atom_ssbbB_algsnd :
     int -> atom -> atom -> atom -> QFBV.QFBV.bexp **)
@@ -607,7 +607,7 @@ let bexp_atom_ssbbB_algsnd a_size a1 a2 ab =
     (QFBV.QFBV.qfbv_lneg
       (QFBV.QFBV.qfbv_ssubo
         (QFBV.QFBV.qfbv_sub (qfbv_atom a1) (qfbv_atom a2))
-        (QFBV.QFBV.qfbv_zext (subn a_size (Pervasives.succ 0)) (qfbv_atom ab))))
+        (QFBV.QFBV.qfbv_zext (subn a_size (Stdlib.succ 0)) (qfbv_atom ab))))
 
 (** val bexp_atom_sbbB_algsnd :
     TypEnv.SSATE.env -> SSALite.SSALite.atom -> atom -> atom -> QFBV.QFBV.bexp **)
@@ -638,8 +638,8 @@ let bexp_atom_usbcB_algsnd a_size a1 a2 ac =
     (QFBV.QFBV.qfbv_lneg
       (QFBV.QFBV.qfbv_usubo
         (QFBV.QFBV.qfbv_sub (qfbv_atom a1) (qfbv_atom a2))
-        (QFBV.QFBV.qfbv_zext (subn a_size (Pervasives.succ 0))
-          (QFBV.QFBV.qfbv_sub (QFBV.QFBV.qfbv_one (Pervasives.succ 0))
+        (QFBV.QFBV.qfbv_zext (subn a_size (Stdlib.succ 0))
+          (QFBV.QFBV.qfbv_sub (QFBV.QFBV.qfbv_one (Stdlib.succ 0))
             (qfbv_atom ac)))))
 
 (** val bexp_atom_ssbcB_algsnd :
@@ -651,8 +651,8 @@ let bexp_atom_ssbcB_algsnd a_size a1 a2 ac =
     (QFBV.QFBV.qfbv_lneg
       (QFBV.QFBV.qfbv_ssubo
         (QFBV.QFBV.qfbv_sub (qfbv_atom a1) (qfbv_atom a2))
-        (QFBV.QFBV.qfbv_zext (subn a_size (Pervasives.succ 0))
-          (QFBV.QFBV.qfbv_sub (QFBV.QFBV.qfbv_one (Pervasives.succ 0))
+        (QFBV.QFBV.qfbv_zext (subn a_size (Stdlib.succ 0))
+          (QFBV.QFBV.qfbv_sub (QFBV.QFBV.qfbv_one (Stdlib.succ 0))
             (qfbv_atom ac)))))
 
 (** val bexp_atom_sbcB_algsnd :
@@ -694,12 +694,12 @@ let bexp_atom_shl_algsnd e a n =
          (QFBV.QFBV.qfbv_zero n)
   else QFBV.QFBV.qfbv_disj
          (QFBV.QFBV.qfbv_eq
-           (QFBV.QFBV.qfbv_high (addn n (Pervasives.succ 0)) (qfbv_atom a))
-           (QFBV.QFBV.qfbv_zero (addn n (Pervasives.succ 0))))
+           (QFBV.QFBV.qfbv_high (addn n (Stdlib.succ 0)) (qfbv_atom a))
+           (QFBV.QFBV.qfbv_zero (addn n (Stdlib.succ 0))))
          (QFBV.QFBV.qfbv_eq
-           (QFBV.QFBV.qfbv_high (addn n (Pervasives.succ 0)) (qfbv_atom a))
+           (QFBV.QFBV.qfbv_high (addn n (Stdlib.succ 0)) (qfbv_atom a))
            (QFBV.QFBV.qfbv_not
-             (QFBV.QFBV.qfbv_zero (addn n (Pervasives.succ 0)))))
+             (QFBV.QFBV.qfbv_zero (addn n (Stdlib.succ 0)))))
 
 (** val bexp_atom_cshl_algsnd :
     TypEnv.SSATE.env -> SSALite.SSALite.atom -> atom -> int -> QFBV.QFBV.bexp **)
@@ -712,14 +712,14 @@ let bexp_atom_cshl_algsnd e a1 a2 n =
          (QFBV.QFBV.qfbv_zero n)
   else QFBV.QFBV.qfbv_disj
          (QFBV.QFBV.qfbv_eq
-           (QFBV.QFBV.qfbv_high (addn n (Pervasives.succ 0))
+           (QFBV.QFBV.qfbv_high (addn n (Stdlib.succ 0))
              (QFBV.QFBV.qfbv_concat (qfbv_atom a1) (qfbv_atom a2)))
-           (QFBV.QFBV.qfbv_zero (addn n (Pervasives.succ 0))))
+           (QFBV.QFBV.qfbv_zero (addn n (Stdlib.succ 0))))
          (QFBV.QFBV.qfbv_eq
-           (QFBV.QFBV.qfbv_high (addn n (Pervasives.succ 0))
+           (QFBV.QFBV.qfbv_high (addn n (Stdlib.succ 0))
              (QFBV.QFBV.qfbv_concat (qfbv_atom a1) (qfbv_atom a2)))
            (QFBV.QFBV.qfbv_not
-             (QFBV.QFBV.qfbv_zero (addn n (Pervasives.succ 0)))))
+             (QFBV.QFBV.qfbv_zero (addn n (Stdlib.succ 0)))))
 
 (** val bexp_atom_vpc_algsnd :
     TypEnv.SSATE.env -> typ -> SSALite.SSALite.atom -> QFBV.QFBV.bexp **)
@@ -736,25 +736,25 @@ let bexp_atom_vpc_algsnd e t a =
                    (QFBV.QFBV.qfbv_zero
                      (subn (sizeof_typ (SSALite.SSALite.atyp a e))
                        (sizeof_typ t)))
-       else if leq (Pervasives.succ (sizeof_typ (SSALite.SSALite.atyp a e)))
+       else if leq (Stdlib.succ (sizeof_typ (SSALite.SSALite.atyp a e)))
                  (sizeof_typ t)
             then QFBV.QFBV.qfbv_true
             else QFBV.QFBV.qfbv_eq
                    (QFBV.QFBV.qfbv_high
                      (addn
                        (subn (sizeof_typ (SSALite.SSALite.atyp a e))
-                         (sizeof_typ t)) (Pervasives.succ 0)) (qfbv_atom a))
+                         (sizeof_typ t)) (Stdlib.succ 0)) (qfbv_atom a))
                    (QFBV.QFBV.qfbv_zero
                      (addn
                        (subn (sizeof_typ (SSALite.SSALite.atyp a e))
-                         (sizeof_typ t)) (Pervasives.succ 0)))
+                         (sizeof_typ t)) (Stdlib.succ 0)))
   else if is_unsigned t
        then if leq
                  (subn (sizeof_typ (SSALite.SSALite.atyp a e))
-                   (Pervasives.succ 0)) (sizeof_typ t)
+                   (Stdlib.succ 0)) (sizeof_typ t)
             then QFBV.QFBV.qfbv_eq
-                   (QFBV.QFBV.qfbv_high (Pervasives.succ 0) (qfbv_atom a))
-                   (QFBV.QFBV.qfbv_zero (Pervasives.succ 0))
+                   (QFBV.QFBV.qfbv_high (Stdlib.succ 0) (qfbv_atom a))
+                   (QFBV.QFBV.qfbv_zero (Stdlib.succ 0))
             else QFBV.QFBV.qfbv_eq
                    (QFBV.QFBV.qfbv_high
                      (subn (sizeof_typ (SSALite.SSALite.atyp a e))

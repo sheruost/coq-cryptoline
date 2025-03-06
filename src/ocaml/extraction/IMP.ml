@@ -206,7 +206,7 @@ let rec pexpr_single_variables = function
 let rec pexpr_num_occurrence v = function
 | PEX j ->
   if eq_op pos_eqType (Obj.magic j) (Obj.magic v)
-  then Pervasives.succ 0
+  then Stdlib.succ 0
   else 0
 | PEadd (e1, e2) ->
   addn (pexpr_num_occurrence v e1) (pexpr_num_occurrence v e2)
@@ -250,7 +250,7 @@ let pexpr_get_rewrite_pattern e =
   let candidates =
     PS.filter (fun v ->
       eq_op nat_eqType (Obj.magic pexpr_num_occurrence v e)
-        (Obj.magic (Pervasives.succ 0))) (pexpr_single_variables e)
+        (Obj.magic (Stdlib.succ 0))) (pexpr_single_variables e)
   in
   if eq_op nat_eqType (Obj.magic PS.cardinal candidates) (Obj.magic 0)
   then None

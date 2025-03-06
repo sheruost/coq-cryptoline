@@ -2022,25 +2022,25 @@ module MakeDSL =
   (** val well_typed_rexp : TE.env -> rexp -> bool **)
 
   let rec well_typed_rexp te = function
-  | Rvar v -> leq (Pervasives.succ 0) (TE.vsize v te)
+  | Rvar v -> leq (Stdlib.succ 0) (TE.vsize v te)
   | Rconst (w, n) ->
-    (&&) (leq (Pervasives.succ 0) w)
+    (&&) (leq (Stdlib.succ 0) w)
       (eq_op nat_eqType (Obj.magic size n) (Obj.magic w))
   | Runop (w, _, e0) ->
-    (&&) ((&&) (leq (Pervasives.succ 0) w) (well_typed_rexp te e0))
+    (&&) ((&&) (leq (Stdlib.succ 0) w) (well_typed_rexp te e0))
       (eq_op nat_eqType (Obj.magic size_of_rexp e0 te) (Obj.magic w))
   | Rbinop (w, _, e1, e2) ->
     (&&)
       ((&&)
-        ((&&) ((&&) (leq (Pervasives.succ 0) w) (well_typed_rexp te e1))
+        ((&&) ((&&) (leq (Stdlib.succ 0) w) (well_typed_rexp te e1))
           (eq_op nat_eqType (Obj.magic size_of_rexp e1 te) (Obj.magic w)))
         (well_typed_rexp te e2))
       (eq_op nat_eqType (Obj.magic size_of_rexp e2 te) (Obj.magic w))
   | Ruext (w, e0, _) ->
-    (&&) ((&&) (leq (Pervasives.succ 0) w) (well_typed_rexp te e0))
+    (&&) ((&&) (leq (Stdlib.succ 0) w) (well_typed_rexp te e0))
       (eq_op nat_eqType (Obj.magic size_of_rexp e0 te) (Obj.magic w))
   | Rsext (w, e0, _) ->
-    (&&) ((&&) (leq (Pervasives.succ 0) w) (well_typed_rexp te e0))
+    (&&) ((&&) (leq (Stdlib.succ 0) w) (well_typed_rexp te e0))
       (eq_op nat_eqType (Obj.magic size_of_rexp e0 te) (Obj.magic w))
 
   (** val well_typed_ebexp : TE.env -> ebexp -> bool **)
@@ -2060,14 +2060,14 @@ module MakeDSL =
   | Req (w, e1, e2) ->
     (&&)
       ((&&)
-        ((&&) ((&&) (leq (Pervasives.succ 0) w) (well_typed_rexp te e1))
+        ((&&) ((&&) (leq (Stdlib.succ 0) w) (well_typed_rexp te e1))
           (eq_op nat_eqType (Obj.magic size_of_rexp e1 te) (Obj.magic w)))
         (well_typed_rexp te e2))
       (eq_op nat_eqType (Obj.magic size_of_rexp e2 te) (Obj.magic w))
   | Rcmp (w, _, e1, e2) ->
     (&&)
       ((&&)
-        ((&&) ((&&) (leq (Pervasives.succ 0) w) (well_typed_rexp te e1))
+        ((&&) ((&&) (leq (Stdlib.succ 0) w) (well_typed_rexp te e1))
           (eq_op nat_eqType (Obj.magic size_of_rexp e1 te) (Obj.magic w)))
         (well_typed_rexp te e2))
       (eq_op nat_eqType (Obj.magic size_of_rexp e2 te) (Obj.magic w))
@@ -2084,8 +2084,8 @@ module MakeDSL =
 
   let well_sized_atom e a =
     if is_unsigned (atyp a e)
-    then leq (Pervasives.succ 0) (asize a e)
-    else leq (Pervasives.succ (Pervasives.succ 0)) (asize a e)
+    then leq (Stdlib.succ 0) (asize a e)
+    else leq (Stdlib.succ (Stdlib.succ 0)) (asize a e)
 
   (** val size_matched_atom : atom -> bool **)
 
@@ -2104,7 +2104,7 @@ module MakeDSL =
   let well_typed_instr e = function
   | Imov (_, a) -> well_typed_atom e a
   | Ishl (_, a, n) ->
-    (&&) (well_typed_atom e a) (leq (Pervasives.succ n) (asize a e))
+    (&&) (well_typed_atom e a) (leq (Stdlib.succ n) (asize a e))
   | Icshl (_, _, a1, a2, n) ->
     (&&)
       ((&&)
@@ -2208,7 +2208,7 @@ module MakeDSL =
       ((&&) (eq_op typ_eqType (Obj.magic atyp a1 e) (Obj.magic atyp a2 e))
         (well_typed_atom e a1)) (well_typed_atom e a2)
   | Isplit (_, _, a, n) ->
-    (&&) (well_typed_atom e a) (leq (Pervasives.succ n) (asize a e))
+    (&&) (well_typed_atom e a) (leq (Stdlib.succ n) (asize a e))
   | Iand (_, t0, a1, a2) ->
     (&&)
       ((&&) ((&&) (compatible t0 (atyp a1 e)) (compatible t0 (atyp a2 e)))

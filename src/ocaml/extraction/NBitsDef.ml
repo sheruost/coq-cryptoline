@@ -103,8 +103,8 @@ let low n bs =
 (** val extract : int -> int -> bits -> bits **)
 
 let extract i j bs =
-  high (addn (subn i j) (Pervasives.succ 0))
-    (low (addn i (Pervasives.succ 0)) bs)
+  high (addn (subn i j) (Stdlib.succ 0))
+    (low (addn i (Stdlib.succ 0)) bs)
 
 (** val zext : int -> bits -> bits **)
 
@@ -213,16 +213,16 @@ let rec to_hex bs = match bs with
    | [] ->
      append_nibble_on_string
        (cat bs
-         (zeros (Pervasives.succ (Pervasives.succ (Pervasives.succ 0))))) []
+         (zeros (Stdlib.succ (Stdlib.succ (Stdlib.succ 0))))) []
    | b3 :: l0 ->
      (match l0 with
       | [] ->
         append_nibble_on_string
-          (cat bs (zeros (Pervasives.succ (Pervasives.succ 0)))) []
+          (cat bs (zeros (Stdlib.succ (Stdlib.succ 0)))) []
       | b4 :: l1 ->
         (match l1 with
          | [] ->
-           append_nibble_on_string (cat bs (zeros (Pervasives.succ 0))) []
+           append_nibble_on_string (cat bs (zeros (Stdlib.succ 0))) []
          | b5 :: tl ->
            append_nibble_on_string (b2 :: (b3 :: (b4 :: (b5 :: []))))
              (to_hex tl))))

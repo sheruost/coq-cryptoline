@@ -35,9 +35,9 @@ let bit_blast_smulo g ls1 ls2 =
   in
   let (p2, _) = p1 in
   let (g_rec, cs_rec) = p2 in
-  let (p3, wls1) = bit_blast_signextend (Pervasives.succ 0) g_rec ls1 in
+  let (p3, wls1) = bit_blast_signextend (Stdlib.succ 0) g_rec ls1 in
   let (g_wls1, cs_wls1) = p3 in
-  let (p4, wls2) = bit_blast_signextend (Pervasives.succ 0) g_wls1 ls2 in
+  let (p4, wls2) = bit_blast_signextend (Stdlib.succ 0) g_wls1 ls2 in
   let (g_wls2, cs_wls2) = p4 in
   let (p5, mul) = bit_blast_mul g_wls2 wls1 (Obj.magic wls2) in
   let (g_mul, cs_mul) = p5 in

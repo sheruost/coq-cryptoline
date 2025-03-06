@@ -36,20 +36,20 @@ module Nat =
       (fun k' ->
       (fun fO fS n -> if n=0 then fO () else fS (n-1))
         (fun _ ->
-        log2_iter k' (Pervasives.succ p) (Pervasives.succ q) q)
-        (fun r' -> log2_iter k' p (Pervasives.succ q) r')
+        log2_iter k' (Stdlib.succ p) (Stdlib.succ q) q)
+        (fun r' -> log2_iter k' p (Stdlib.succ q) r')
         r)
       k
 
   (** val log2 : int -> int **)
 
   let log2 n =
-    log2_iter (pred n) 0 (Pervasives.succ 0) 0
+    log2_iter (pred n) 0 (Stdlib.succ 0) 0
 
   (** val log2_up : int -> int **)
 
   let log2_up a =
-    match compare (Pervasives.succ 0) a with
-    | Lt -> Pervasives.succ (log2 (pred a))
+    match compare (Stdlib.succ 0) a with
+    | Lt -> Stdlib.succ (log2 (pred a))
     | _ -> 0
  end

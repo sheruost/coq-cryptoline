@@ -201,24 +201,24 @@ let hbexp_eqType =
 
 let id_hashed_exp = function
 | HEvar _ -> 0
-| HEconst _ -> Pervasives.succ 0
-| HEunop (_, _) -> Pervasives.succ (Pervasives.succ 0)
-| HEbinop (_, _, _) -> Pervasives.succ (Pervasives.succ (Pervasives.succ 0))
+| HEconst _ -> Stdlib.succ 0
+| HEunop (_, _) -> Stdlib.succ (Stdlib.succ 0)
+| HEbinop (_, _, _) -> Stdlib.succ (Stdlib.succ (Stdlib.succ 0))
 | HEite (_, _, _) ->
-  Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ 0)))
+  Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ 0)))
 
 (** val id_hashed_bexp : hashed_bexp -> int **)
 
 let id_hashed_bexp = function
 | HBfalse -> 0
-| HBtrue -> Pervasives.succ 0
-| HBbinop (_, _, _) -> Pervasives.succ (Pervasives.succ 0)
-| HBlneg _ -> Pervasives.succ (Pervasives.succ (Pervasives.succ 0))
+| HBtrue -> Stdlib.succ 0
+| HBbinop (_, _, _) -> Stdlib.succ (Stdlib.succ 0)
+| HBlneg _ -> Stdlib.succ (Stdlib.succ (Stdlib.succ 0))
 | HBconj (_, _) ->
-  Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ 0)))
+  Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ 0)))
 | HBdisj (_, _) ->
-  Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-    (Pervasives.succ 0))))
+  Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+    (Stdlib.succ 0))))
 
 (** val sizen : bits -> coq_N **)
 
@@ -233,7 +233,7 @@ let rec hashed_exp_ltn e1 e2 =
   | HEvar v1 ->
     (match e2 with
      | HEvar v2 -> SSAVarOrder.ltn v1 v2
-     | _ -> leq (Pervasives.succ (id_hashed_exp e1)) (id_hashed_exp e2))
+     | _ -> leq (Stdlib.succ (id_hashed_exp e1)) (id_hashed_exp e2))
   | HEconst n1 ->
     (match e2 with
      | HEconst n2 ->
@@ -241,14 +241,14 @@ let rec hashed_exp_ltn e1 e2 =
          ((&&)
            (eq_op bin_nat_eqType (Obj.magic sizen n1) (Obj.magic sizen n2))
            (ltB_lsb n1 n2))
-     | _ -> leq (Pervasives.succ (id_hashed_exp e1)) (id_hashed_exp e2))
+     | _ -> leq (Stdlib.succ (id_hashed_exp e1)) (id_hashed_exp e2))
   | HEunop (o1, f1) ->
     (match e2 with
      | HEunop (o2, f2) ->
        (||) (QFBV.QFBV.eunop_ltn o1 o2)
          ((&&) (eq_op QFBV.eunop_eqType (Obj.magic o1) (Obj.magic o2))
            (hexp_ltn f1 f2))
-     | _ -> leq (Pervasives.succ (id_hashed_exp e1)) (id_hashed_exp e2))
+     | _ -> leq (Stdlib.succ (id_hashed_exp e1)) (id_hashed_exp e2))
   | HEbinop (o1, f1, f2) ->
     (match e2 with
      | HEbinop (o2, f3, f4) ->
@@ -260,7 +260,7 @@ let rec hashed_exp_ltn e1 e2 =
            ((&&) (eq_op QFBV.ebinop_eqType (Obj.magic o1) (Obj.magic o2))
              (eq_op hexp_eqType (Obj.magic f1) (Obj.magic f3)))
            (hexp_ltn f2 f4))
-     | _ -> leq (Pervasives.succ (id_hashed_exp e1)) (id_hashed_exp e2))
+     | _ -> leq (Stdlib.succ (id_hashed_exp e1)) (id_hashed_exp e2))
   | HEite (c1, f1, f2) ->
     (match e2 with
      | HEite (c2, f3, f4) ->
@@ -272,7 +272,7 @@ let rec hashed_exp_ltn e1 e2 =
            ((&&) (eq_op hbexp_eqType (Obj.magic c1) (Obj.magic c2))
              (eq_op hexp_eqType (Obj.magic f1) (Obj.magic f3)))
            (hexp_ltn f2 f4))
-     | _ -> leq (Pervasives.succ (id_hashed_exp e1)) (id_hashed_exp e2))
+     | _ -> leq (Stdlib.succ (id_hashed_exp e1)) (id_hashed_exp e2))
 
 (** val hashed_bexp_ltn : hashed_bexp -> hashed_bexp -> bool **)
 
@@ -289,26 +289,26 @@ and hashed_bexp_ltn e1 e2 =
            ((&&) (eq_op QFBV.bbinop_eqType (Obj.magic o1) (Obj.magic o2))
              (eq_op hexp_eqType (Obj.magic f1) (Obj.magic f3)))
            (hexp_ltn f2 f4))
-     | _ -> leq (Pervasives.succ (id_hashed_bexp e1)) (id_hashed_bexp e2))
+     | _ -> leq (Stdlib.succ (id_hashed_bexp e1)) (id_hashed_bexp e2))
   | HBlneg f1 ->
     (match e2 with
      | HBlneg f2 -> hbexp_ltn f1 f2
-     | _ -> leq (Pervasives.succ (id_hashed_bexp e1)) (id_hashed_bexp e2))
+     | _ -> leq (Stdlib.succ (id_hashed_bexp e1)) (id_hashed_bexp e2))
   | HBconj (f1, f2) ->
     (match e2 with
      | HBconj (f3, f4) ->
        (||) (hbexp_ltn f1 f3)
          ((&&) (eq_op hbexp_eqType (Obj.magic f1) (Obj.magic f3))
            (hbexp_ltn f2 f4))
-     | _ -> leq (Pervasives.succ (id_hashed_bexp e1)) (id_hashed_bexp e2))
+     | _ -> leq (Stdlib.succ (id_hashed_bexp e1)) (id_hashed_bexp e2))
   | HBdisj (f1, f2) ->
     (match e2 with
      | HBdisj (f3, f4) ->
        (||) (hbexp_ltn f1 f3)
          ((&&) (eq_op hbexp_eqType (Obj.magic f1) (Obj.magic f3))
            (hbexp_ltn f2 f4))
-     | _ -> leq (Pervasives.succ (id_hashed_bexp e1)) (id_hashed_bexp e2))
-  | _ -> leq (Pervasives.succ (id_hashed_bexp e1)) (id_hashed_bexp e2)
+     | _ -> leq (Stdlib.succ (id_hashed_bexp e1)) (id_hashed_bexp e2))
+  | _ -> leq (Stdlib.succ (id_hashed_bexp e1)) (id_hashed_bexp e2)
 
 (** val hexp_ltn : hexp -> hexp -> bool **)
 

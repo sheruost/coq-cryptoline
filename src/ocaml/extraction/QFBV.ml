@@ -988,7 +988,7 @@ module MakeQFBV =
   (** val qfbv_one : int -> exp **)
 
   let qfbv_one w =
-    Econst (from_nat w (Pervasives.succ 0))
+    Econst (from_nat w (Stdlib.succ 0))
 
   (** val qfbv_not : exp -> exp **)
 
@@ -1297,31 +1297,31 @@ module MakeQFBV =
 
   let id_eunop = function
   | Unot -> 0
-  | Uneg -> Pervasives.succ 0
-  | Uextr (_, _) -> Pervasives.succ (Pervasives.succ 0)
+  | Uneg -> Stdlib.succ 0
+  | Uextr (_, _) -> Stdlib.succ (Stdlib.succ 0)
   | Uhigh _ ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ 0)))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ 0)))
   | Ulow _ ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ 0))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ 0))))
   | Uzext _ ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ 0)))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ 0)))))
   | Usext _ ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ 0))))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ 0))))))
   | Urepeat _ ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
       0)))))))
   | Urotl _ ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ 0))))))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ 0))))))))
   | Urotr _ ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ 0)))))))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ 0)))))))))
 
   (** val eunop_ltn : eunop -> eunop -> bool **)
 
@@ -1330,177 +1330,177 @@ module MakeQFBV =
     | Uextr (i1, j1) ->
       (match o2 with
        | Uextr (i2, j2) ->
-         (||) (leq (Pervasives.succ i1) i2)
+         (||) (leq (Stdlib.succ i1) i2)
            ((&&) (eq_op nat_eqType (Obj.magic i1) (Obj.magic i2))
-             (leq (Pervasives.succ j1) j2))
-       | _ -> leq (Pervasives.succ (id_eunop o1)) (id_eunop o2))
+             (leq (Stdlib.succ j1) j2))
+       | _ -> leq (Stdlib.succ (id_eunop o1)) (id_eunop o2))
     | Uhigh n1 ->
       (match o2 with
-       | Uhigh n2 -> leq (Pervasives.succ n1) n2
-       | _ -> leq (Pervasives.succ (id_eunop o1)) (id_eunop o2))
+       | Uhigh n2 -> leq (Stdlib.succ n1) n2
+       | _ -> leq (Stdlib.succ (id_eunop o1)) (id_eunop o2))
     | Ulow n1 ->
       (match o2 with
-       | Ulow n2 -> leq (Pervasives.succ n1) n2
-       | _ -> leq (Pervasives.succ (id_eunop o1)) (id_eunop o2))
+       | Ulow n2 -> leq (Stdlib.succ n1) n2
+       | _ -> leq (Stdlib.succ (id_eunop o1)) (id_eunop o2))
     | Uzext n1 ->
       (match o2 with
-       | Uzext n2 -> leq (Pervasives.succ n1) n2
-       | _ -> leq (Pervasives.succ (id_eunop o1)) (id_eunop o2))
+       | Uzext n2 -> leq (Stdlib.succ n1) n2
+       | _ -> leq (Stdlib.succ (id_eunop o1)) (id_eunop o2))
     | Usext n1 ->
       (match o2 with
-       | Usext n2 -> leq (Pervasives.succ n1) n2
-       | _ -> leq (Pervasives.succ (id_eunop o1)) (id_eunop o2))
+       | Usext n2 -> leq (Stdlib.succ n1) n2
+       | _ -> leq (Stdlib.succ (id_eunop o1)) (id_eunop o2))
     | Urepeat n1 ->
       (match o2 with
-       | Urepeat n2 -> leq (Pervasives.succ n1) n2
-       | _ -> leq (Pervasives.succ (id_eunop o1)) (id_eunop o2))
+       | Urepeat n2 -> leq (Stdlib.succ n1) n2
+       | _ -> leq (Stdlib.succ (id_eunop o1)) (id_eunop o2))
     | Urotl n1 ->
       (match o2 with
-       | Urotl n2 -> leq (Pervasives.succ n1) n2
-       | _ -> leq (Pervasives.succ (id_eunop o1)) (id_eunop o2))
+       | Urotl n2 -> leq (Stdlib.succ n1) n2
+       | _ -> leq (Stdlib.succ (id_eunop o1)) (id_eunop o2))
     | Urotr n1 ->
       (match o2 with
-       | Urotr n2 -> leq (Pervasives.succ n1) n2
-       | _ -> leq (Pervasives.succ (id_eunop o1)) (id_eunop o2))
-    | _ -> leq (Pervasives.succ (id_eunop o1)) (id_eunop o2)
+       | Urotr n2 -> leq (Stdlib.succ n1) n2
+       | _ -> leq (Stdlib.succ (id_eunop o1)) (id_eunop o2))
+    | _ -> leq (Stdlib.succ (id_eunop o1)) (id_eunop o2)
 
   (** val id_ebinop : ebinop -> int **)
 
   let id_ebinop = function
   | Band -> 0
-  | Bor -> Pervasives.succ 0
-  | Bxor -> Pervasives.succ (Pervasives.succ 0)
-  | Badd -> Pervasives.succ (Pervasives.succ (Pervasives.succ 0))
+  | Bor -> Stdlib.succ 0
+  | Bxor -> Stdlib.succ (Stdlib.succ 0)
+  | Badd -> Stdlib.succ (Stdlib.succ (Stdlib.succ 0))
   | Bsub ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ 0)))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ 0)))
   | Bmul ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ 0))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ 0))))
   | Bdiv ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ 0)))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ 0)))))
   | Bmod ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ 0))))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ 0))))))
   | Bsdiv ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
       0)))))))
   | Bsrem ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ 0))))))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ 0))))))))
   | Bsmod ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ 0)))))))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ 0)))))))))
   | Bshl ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ 0))))))))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ 0))))))))))
   | Blshr ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
       0)))))))))))
   | Bashr ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ 0))))))))))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ 0))))))))))))
   | Bconcat ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ 0)))))))))))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ 0)))))))))))))
   | Bcomp ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ 0))))))))))))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ 0))))))))))))))
 
   (** val ebinop_ltn : ebinop -> ebinop -> bool **)
 
   let ebinop_ltn o1 o2 =
-    leq (Pervasives.succ (id_ebinop o1)) (id_ebinop o2)
+    leq (Stdlib.succ (id_ebinop o1)) (id_ebinop o2)
 
   (** val id_bbinop : bbinop -> int **)
 
   let id_bbinop = function
   | Beq -> 0
-  | Bult -> Pervasives.succ 0
-  | Bule -> Pervasives.succ (Pervasives.succ 0)
-  | Bugt -> Pervasives.succ (Pervasives.succ (Pervasives.succ 0))
+  | Bult -> Stdlib.succ 0
+  | Bule -> Stdlib.succ (Stdlib.succ 0)
+  | Bugt -> Stdlib.succ (Stdlib.succ (Stdlib.succ 0))
   | Buge ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ 0)))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ 0)))
   | Bslt ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ 0))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ 0))))
   | Bsle ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ 0)))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ 0)))))
   | Bsgt ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ 0))))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ 0))))))
   | Bsge ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
       0)))))))
   | Buaddo ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ 0))))))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ 0))))))))
   | Busubo ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ 0)))))))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ 0)))))))))
   | Bumulo ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ 0))))))))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ 0))))))))))
   | Bsaddo ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
       0)))))))))))
   | Bssubo ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ 0))))))))))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ 0))))))))))))
   | Bsmulo ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ (Pervasives.succ 0)))))))))))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ (Stdlib.succ 0)))))))))))))
 
   (** val bbinop_ltn : bbinop -> bbinop -> bool **)
 
   let bbinop_ltn o1 o2 =
-    leq (Pervasives.succ (id_bbinop o1)) (id_bbinop o2)
+    leq (Stdlib.succ (id_bbinop o1)) (id_bbinop o2)
 
   (** val id_exp : exp -> int **)
 
   let id_exp = function
   | Evar _ -> 0
-  | Econst _ -> Pervasives.succ 0
-  | Eunop (_, _) -> Pervasives.succ (Pervasives.succ 0)
-  | Ebinop (_, _, _) -> Pervasives.succ (Pervasives.succ (Pervasives.succ 0))
+  | Econst _ -> Stdlib.succ 0
+  | Eunop (_, _) -> Stdlib.succ (Stdlib.succ 0)
+  | Ebinop (_, _, _) -> Stdlib.succ (Stdlib.succ (Stdlib.succ 0))
   | Eite (_, _, _) ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ 0)))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ 0)))
 
   (** val id_bexp : bexp -> int **)
 
   let id_bexp = function
   | Bfalse -> 0
-  | Btrue -> Pervasives.succ 0
-  | Bbinop (_, _, _) -> Pervasives.succ (Pervasives.succ 0)
-  | Blneg _ -> Pervasives.succ (Pervasives.succ (Pervasives.succ 0))
+  | Btrue -> Stdlib.succ 0
+  | Bbinop (_, _, _) -> Stdlib.succ (Stdlib.succ 0)
+  | Blneg _ -> Stdlib.succ (Stdlib.succ (Stdlib.succ 0))
   | Bconj (_, _) ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ 0)))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ 0)))
   | Bdisj (_, _) ->
-    Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-      (Pervasives.succ 0))))
+    Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+      (Stdlib.succ 0))))
 
   (** val exp_ltn : exp -> exp -> bool **)
 
@@ -1509,21 +1509,21 @@ module MakeQFBV =
     | Evar v1 ->
       (match e2 with
        | Evar v2 -> V.ltn v1 v2
-       | _ -> leq (Pervasives.succ (id_exp e1)) (id_exp e2))
+       | _ -> leq (Stdlib.succ (id_exp e1)) (id_exp e2))
     | Econst n1 ->
       (match e2 with
        | Econst n2 ->
-         (||) (leq (Pervasives.succ (size n1)) (size n2))
+         (||) (leq (Stdlib.succ (size n1)) (size n2))
            ((&&) (eq_op nat_eqType (Obj.magic size n1) (Obj.magic size n2))
              (ltB_lsb n1 n2))
-       | _ -> leq (Pervasives.succ (id_exp e1)) (id_exp e2))
+       | _ -> leq (Stdlib.succ (id_exp e1)) (id_exp e2))
     | Eunop (o1, e3) ->
       (match e2 with
        | Eunop (o2, e4) ->
          (||) (eunop_ltn o1 o2)
            ((&&) (eq_op eunop_eqType (Obj.magic o1) (Obj.magic o2))
              (exp_ltn e3 e4))
-       | _ -> leq (Pervasives.succ (id_exp e1)) (id_exp e2))
+       | _ -> leq (Stdlib.succ (id_exp e1)) (id_exp e2))
     | Ebinop (o1, e3, e4) ->
       (match e2 with
        | Ebinop (o2, e5, e6) ->
@@ -1535,7 +1535,7 @@ module MakeQFBV =
              ((&&) (eq_op ebinop_eqType (Obj.magic o1) (Obj.magic o2))
                (eq_op exp_eqType (Obj.magic e3) (Obj.magic e5)))
              (exp_ltn e4 e6))
-       | _ -> leq (Pervasives.succ (id_exp e1)) (id_exp e2))
+       | _ -> leq (Stdlib.succ (id_exp e1)) (id_exp e2))
     | Eite (c1, e3, e4) ->
       (match e2 with
        | Eite (c2, e5, e6) ->
@@ -1547,7 +1547,7 @@ module MakeQFBV =
              ((&&) (eq_op bexp_eqType (Obj.magic c1) (Obj.magic c2))
                (eq_op exp_eqType (Obj.magic e3) (Obj.magic e5)))
              (exp_ltn e4 e6))
-       | _ -> leq (Pervasives.succ (id_exp e1)) (id_exp e2))
+       | _ -> leq (Stdlib.succ (id_exp e1)) (id_exp e2))
 
   (** val bexp_ltn : bexp -> bexp -> bool **)
 
@@ -1564,26 +1564,26 @@ module MakeQFBV =
              ((&&) (eq_op bbinop_eqType (Obj.magic o1) (Obj.magic o2))
                (eq_op exp_eqType (Obj.magic e3) (Obj.magic e5)))
              (exp_ltn e4 e6))
-       | _ -> leq (Pervasives.succ (id_bexp e1)) (id_bexp e2))
+       | _ -> leq (Stdlib.succ (id_bexp e1)) (id_bexp e2))
     | Blneg e3 ->
       (match e2 with
        | Blneg e4 -> bexp_ltn e3 e4
-       | _ -> leq (Pervasives.succ (id_bexp e1)) (id_bexp e2))
+       | _ -> leq (Stdlib.succ (id_bexp e1)) (id_bexp e2))
     | Bconj (e3, e4) ->
       (match e2 with
        | Bconj (e5, e6) ->
          (||) (bexp_ltn e3 e5)
            ((&&) (eq_op bexp_eqType (Obj.magic e3) (Obj.magic e5))
              (bexp_ltn e4 e6))
-       | _ -> leq (Pervasives.succ (id_bexp e1)) (id_bexp e2))
+       | _ -> leq (Stdlib.succ (id_bexp e1)) (id_bexp e2))
     | Bdisj (e3, e4) ->
       (match e2 with
        | Bdisj (e5, e6) ->
          (||) (bexp_ltn e3 e5)
            ((&&) (eq_op bexp_eqType (Obj.magic e3) (Obj.magic e5))
              (bexp_ltn e4 e6))
-       | _ -> leq (Pervasives.succ (id_bexp e1)) (id_bexp e2))
-    | _ -> leq (Pervasives.succ (id_bexp e1)) (id_bexp e2)
+       | _ -> leq (Stdlib.succ (id_bexp e1)) (id_bexp e2))
+    | _ -> leq (Stdlib.succ (id_bexp e1)) (id_bexp e2)
 
   (** val exp_compare : exp -> exp -> exp OrderedType.coq_Compare **)
 
@@ -1668,20 +1668,20 @@ module MakeQFBV =
   (** val len_exp : exp -> int **)
 
   let rec len_exp = function
-  | Eunop (_, e0) -> Pervasives.succ (len_exp e0)
-  | Ebinop (_, e1, e2) -> Pervasives.succ (addn (len_exp e1) (len_exp e2))
+  | Eunop (_, e0) -> Stdlib.succ (len_exp e0)
+  | Ebinop (_, e1, e2) -> Stdlib.succ (addn (len_exp e1) (len_exp e2))
   | Eite (b, e1, e2) ->
-    Pervasives.succ (addn (addn (len_bexp b) (len_exp e1)) (len_exp e2))
-  | _ -> Pervasives.succ 0
+    Stdlib.succ (addn (addn (len_bexp b) (len_exp e1)) (len_exp e2))
+  | _ -> Stdlib.succ 0
 
   (** val len_bexp : bexp -> int **)
 
   and len_bexp = function
-  | Bbinop (_, e1, e2) -> Pervasives.succ (addn (len_exp e1) (len_exp e2))
-  | Blneg e0 -> Pervasives.succ (len_bexp e0)
-  | Bconj (e1, e2) -> Pervasives.succ (addn (len_bexp e1) (len_bexp e2))
-  | Bdisj (e1, e2) -> Pervasives.succ (addn (len_bexp e1) (len_bexp e2))
-  | _ -> Pervasives.succ 0
+  | Bbinop (_, e1, e2) -> Stdlib.succ (addn (len_exp e1) (len_exp e2))
+  | Blneg e0 -> Stdlib.succ (len_bexp e0)
+  | Bconj (e1, e2) -> Stdlib.succ (addn (len_bexp e1) (len_bexp e2))
+  | Bdisj (e1, e2) -> Stdlib.succ (addn (len_bexp e1) (len_bexp e2))
+  | _ -> Stdlib.succ 0
 
   (** val subee : exp -> exp -> bool **)
 
@@ -1731,7 +1731,7 @@ module MakeQFBV =
     | Econst n -> size n
     | Eunop (op0, e0) ->
       (match op0 with
-       | Uextr (i, j) -> addn (subn i j) (Pervasives.succ 0)
+       | Uextr (i, j) -> addn (subn i j) (Stdlib.succ 0)
        | Uhigh n -> n
        | Ulow n -> n
        | Uzext n -> addn (exp_size e0 te) n
@@ -1746,7 +1746,7 @@ module MakeQFBV =
        | Badd -> minn (exp_size e1 te) (exp_size e2 te)
        | Bsub -> minn (exp_size e1 te) (exp_size e2 te)
        | Bconcat -> addn (exp_size e1 te) (exp_size e2 te)
-       | Bcomp -> Pervasives.succ 0
+       | Bcomp -> Stdlib.succ 0
        | _ -> exp_size e1 te)
     | Eite (_, e1, e2) -> maxn (exp_size e1 te) (exp_size e2 te)
 
@@ -1760,7 +1760,7 @@ module MakeQFBV =
     | Ebinop (op0, e1, e2) ->
       (&&)
         ((&&) ((&&) (well_formed_exp e1 te) (well_formed_exp e2 te))
-          (leq (Pervasives.succ 0) (exp_size e1 te)))
+          (leq (Stdlib.succ 0) (exp_size e1 te)))
         (if eq_op ebinop_eqType (Obj.magic op0) (Obj.magic Bconcat)
          then true
          else eq_op nat_eqType (Obj.magic exp_size e1 te)

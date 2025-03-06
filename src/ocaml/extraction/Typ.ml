@@ -47,7 +47,7 @@ let typ_eqType =
 (** val coq_Tbit : typ **)
 
 let coq_Tbit =
-  Tuint (Pervasives.succ 0)
+  Tuint (Stdlib.succ 0)
 
 (** val is_unsigned : typ -> bool **)
 
@@ -64,8 +64,8 @@ let unsigned_typ = function
 (** val double_typ : typ -> typ **)
 
 let double_typ = function
-| Tuint w -> Tuint (muln (Pervasives.succ (Pervasives.succ 0)) w)
-| Tsint w -> Tsint (muln (Pervasives.succ (Pervasives.succ 0)) w)
+| Tuint w -> Tuint (muln (Stdlib.succ (Stdlib.succ 0)) w)
+| Tsint w -> Tsint (muln (Stdlib.succ (Stdlib.succ 0)) w)
 
 (** val compatible : typ -> typ -> bool **)
 

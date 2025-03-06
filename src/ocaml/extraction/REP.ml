@@ -136,7 +136,7 @@ let rec single_variables = function
 (** val num_occurrence : SSAVarOrder.t -> SSALite.SSALite.eexp -> int **)
 
 let rec num_occurrence v = function
-| Evar x -> if eq_op SSAVarOrder.coq_T x v then Pervasives.succ 0 else 0
+| Evar x -> if eq_op SSAVarOrder.coq_T x v then Stdlib.succ 0 else 0
 | Econst _ -> 0
 | Eunop (_, e0) -> num_occurrence v e0
 | Ebinop (_, e1, e2) -> addn (num_occurrence v e1) (num_occurrence v e2)
@@ -175,7 +175,7 @@ let get_rewrite_pattern e =
   let candidates =
     SSAVS.filter (fun v ->
       eq_op nat_eqType (Obj.magic num_occurrence v e)
-        (Obj.magic (Pervasives.succ 0))) (single_variables e)
+        (Obj.magic (Stdlib.succ 0))) (single_variables e)
   in
   if eq_op nat_eqType (Obj.magic SSAVS.cardinal candidates) (Obj.magic 0)
   then None

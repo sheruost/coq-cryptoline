@@ -182,8 +182,8 @@ let mulB bs1 bs2 =
 let coq_Umulo bs1 bs2 =
   let bs1_hightl = snd (splitlsb bs1) in
   let bs2_hightl = snd (splitlsb bs2) in
-  let wbs1 = zext (Pervasives.succ 0) bs1 in
-  let wbs2 = zext (Pervasives.succ 0) bs2 in
+  let wbs1 = zext (Stdlib.succ 0) bs1 in
+  let wbs2 = zext (Stdlib.succ 0) bs2 in
   let mul = mulB wbs1 wbs2 in
   let mul_high = msb mul in (||) (andb_orb_all bs1_hightl bs2_hightl) mul_high
 
@@ -201,8 +201,8 @@ let coq_Smulo bs1 bs2 =
   let xbs1_hightl = snd (splitlsb xbs1) in
   let xbs2_hightl = snd (splitlsb xbs2) in
   let and_or = andb_orb_all xbs1_hightl xbs2_hightl in
-  let wbs1 = sext (Pervasives.succ 0) bs1 in
-  let wbs2 = sext (Pervasives.succ 0) bs2 in
+  let wbs1 = sext (Stdlib.succ 0) bs1 in
+  let wbs2 = sext (Stdlib.succ 0) bs2 in
   let mul = mulB wbs1 wbs2 in
   let mul_tl = fst (splitmsb mul) in
   let mul_n = snd (splitmsb mul) in
@@ -303,7 +303,7 @@ let shrBB bs ns =
   let szbs = size bs in
   let szns = size ns in
   let log2szbs = Nat.log2_up szbs in
-  if leq szbs (Pervasives.succ 0)
+  if leq szbs (Stdlib.succ 0)
   then if eq_op bitseq_eqType (Obj.magic ns) (Obj.magic zeros szns)
        then bs
        else zeros szbs
@@ -332,7 +332,7 @@ let sarBB bs ns =
   let szns = size ns in
   let log2szbs = Nat.log2_up szbs in
   let msb_bs = msb bs in
-  if leq szbs (Pervasives.succ 0)
+  if leq szbs (Stdlib.succ 0)
   then if eq_op bitseq_eqType (Obj.magic ns) (Obj.magic zeros szns)
        then bs
        else nseq szbs msb_bs
@@ -360,7 +360,7 @@ let shlBB bs ns =
   let szbs = size bs in
   let szns = size ns in
   let log2szbs = Nat.log2_up szbs in
-  if leq szbs (Pervasives.succ 0)
+  if leq szbs (Stdlib.succ 0)
   then if eq_op bitseq_eqType (Obj.magic ns) (Obj.magic zeros szns)
        then bs
        else zeros szbs

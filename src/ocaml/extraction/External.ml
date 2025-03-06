@@ -722,7 +722,7 @@ let rec coq_magma_of_pexpr e =
 
 module PosOrder = struct
   type t = positive
-  let compare = Pervasives.compare
+  let compare = Stdlib.compare
 end
 
 module PS = Set.Make(PosOrder)

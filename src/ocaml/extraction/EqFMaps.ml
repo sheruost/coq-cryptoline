@@ -264,7 +264,7 @@ module MakeTreeMap' =
 
     let rec cardinal = function
     | Leaf -> 0
-    | Node (l, _, _, r, _) -> Pervasives.succ (add (cardinal l) (cardinal r))
+    | Node (l, _, _, r, _) -> Stdlib.succ (add (cardinal l) (cardinal r))
 
     (** val empty : 'a1 tree **)
 

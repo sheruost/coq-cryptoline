@@ -78,7 +78,7 @@ let algred_cast avn g v vtyp a atyp0 =
   | Tsint wv ->
     (match atyp0 with
      | Tuint wa ->
-       if leq (Pervasives.succ wa) wv
+       if leq (Stdlib.succ wa) wv
        then (g, ((Eeq ((SSALite.SSALite.evar v), (algred_atom a))) :: []))
        else let discarded = (avn, g) in
             let g' = N.succ g in

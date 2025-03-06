@@ -12,7 +12,7 @@ let __ = let rec f _ = Obj.repr f in Obj.repr f
 
 let rec size = function
 | [] -> 0
-| _ :: s' -> Pervasives.succ (size s')
+| _ :: s' -> Stdlib.succ (size s')
 
 (** val head : 'a1 -> 'a1 list -> 'a1 **)
 

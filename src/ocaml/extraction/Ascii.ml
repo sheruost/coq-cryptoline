@@ -24,8 +24,8 @@ let ascii_of_pos =
       | Coq_xO p' -> shift false (loop n' p')
       | Coq_xH -> one)
       n
-  in loop (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
-       (Pervasives.succ (Pervasives.succ (Pervasives.succ (Pervasives.succ
+  in loop (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
+       (Stdlib.succ (Stdlib.succ (Stdlib.succ (Stdlib.succ
        0))))))))
 
 (** val ascii_of_N : coq_N -> char **)

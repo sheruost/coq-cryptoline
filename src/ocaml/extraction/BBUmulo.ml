@@ -43,9 +43,9 @@ let bit_blast_umulo_rec g ls1 ls2 =
 let bit_blast_umulo g ls1 ls2 =
   let ls1_hightl = snd (splitlsl ls1) in
   let ls2_hightl = snd (splitlsl ls2) in
-  let (p, lrs_wls1) = bit_blast_zeroextend (Pervasives.succ 0) g ls1 in
+  let (p, lrs_wls1) = bit_blast_zeroextend (Stdlib.succ 0) g ls1 in
   let (g_wls1, cs_wls1) = p in
-  let (p0, lrs_wls2) = bit_blast_zeroextend (Pervasives.succ 0) g_wls1 ls2 in
+  let (p0, lrs_wls2) = bit_blast_zeroextend (Stdlib.succ 0) g_wls1 ls2 in
   let (g_wls2, cs_wls2) = p0 in
   let (p1, r_or_and_rec1) = bit_blast_umulo_rec g_wls2 ls1_hightl ls2_hightl
   in

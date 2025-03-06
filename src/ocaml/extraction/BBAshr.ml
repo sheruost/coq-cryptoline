@@ -60,7 +60,7 @@ let rec bit_blast_ashr_rec g ls ns i =
     generator -> literal list -> literal list -> (generator * cnf) * word **)
 
 let bit_blast_ashr g ls ns =
-  if leq (Pervasives.succ (Pervasives.succ 0)) (size ls)
+  if leq (Stdlib.succ (Stdlib.succ 0)) (size ls)
   then let (p, zero_hi) =
          bit_blast_const g
            (from_nat

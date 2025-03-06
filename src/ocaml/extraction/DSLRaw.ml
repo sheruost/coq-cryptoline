@@ -376,7 +376,7 @@ let rec limbsi var i r = function
    | [] -> e
    | _ :: _ ->
      eadd var (emul var e (e2expn var (Z.mul (Z.of_nat i) r)))
-       (limbsi var (addn i (Pervasives.succ 0)) r es0))
+       (limbsi var (addn i (Stdlib.succ 0)) r es0))
 
 type rexp =
 | Rvar of Equality.sort
@@ -413,7 +413,7 @@ let radds var w = function
 (** val rmuls : Equality.coq_type -> int -> rexp list -> rexp **)
 
 let rmuls var w = function
-| [] -> rbits var (from_nat w (Pervasives.succ 0))
+| [] -> rbits var (from_nat w (Stdlib.succ 0))
 | e :: es0 ->
   (match es0 with
    | [] -> e

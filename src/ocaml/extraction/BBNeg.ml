@@ -13,7 +13,7 @@ let bit_blast_neg g ls =
   let (p, lrs_not) = bit_blast_not g ls in
   let (g_not, cs_not) = p in
   let (p0, lrs_con) =
-    bit_blast_const g_not (from_nat (size ls) (Pervasives.succ 0))
+    bit_blast_const g_not (from_nat (size ls) (Stdlib.succ 0))
   in
   let (g_con, cs_con) = p0 in
   let (p1, lrs_add) = bit_blast_add g_con lrs_not lrs_con in
