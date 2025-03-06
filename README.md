@@ -52,12 +52,10 @@ With OPAM
 The packages for compilation can also be installed via
 [opam](http://opam.ocaml.org).
 
-    $ opam switch create ocaml-base-compiler.4.08.1
+    $ opam switch create 5.3.0
     $ eval $(opam env)
     $ opam repo add coq-released https://coq.inria.fr/opam/released
     $ opam install dune zarith lwt lwt_ppx
-    $ opam pin coq 8.11.0
-    $ opam pin coq-mathcomp-ssreflect 1.10.0
     $ opam install coq-mathcomp-algebra
 
 Some system dependencies such as libgmp-dev on Ubuntu 20.04 may need to be
